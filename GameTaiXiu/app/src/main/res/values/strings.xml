@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">GameTaiXiu</string>
+    <string-array name="dice_faces">
+        <item>xx1</item>
+        <item>xx2</item>
+        <item>xx3</item>
+        <item>xx4</item>
+        <item>xx5</item>
+        <item>xx6</item>
+    </string-array>
+</resources>
