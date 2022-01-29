@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> dice_faces;
     private Random random = new Random();
     private int a, b, c, sum, res, percent, stopPosition;
-    private MediaPlayer music;
+    private MediaPlayer music, sound;
     private boolean isMusicPlayed = true;
 
     @Override
@@ -41,8 +41,10 @@ public class MainActivity extends AppCompatActivity {
 
         initViews();
         getImagesName();
+        initMusic();
 
-        playMusic(R.raw.music, 0);
+//        playMusic(R.raw.music, 0);
+        music.start();
 
         btnMusic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
 
                     btnMusic.setImageResource(R.drawable.ic_music_on);
 
-                    playMusic(R.raw.music, 0);
+//                    playMusic(R.raw.music, 0);
+                    music.start();
                 }
             }
         });
@@ -72,14 +75,15 @@ public class MainActivity extends AppCompatActivity {
                             .setPositiveButton("OK", null)
                             .show();
                 }else   {
-                    if (music.isPlaying()) {
-                        stopPosition = music.getCurrentPosition();
-
-                        music.stop();
-
-                    }
-
-                    playMusic(R.raw.play_sound, stopPosition);
+                    sound.start();
+//                    if (music.isPlaying()) {
+//                        stopPosition = music.getCurrentPosition();
+//
+//                        music.stop();
+//
+//                    }
+//
+//                    playMusic(R.raw.play_sound, stopPosition);
 
                     lacXiNgau();
                 }
@@ -112,11 +116,11 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                music.stop();
-
-                if (isMusicPlayed) {
-                    playMusic(R.raw.music, stopPosition);
-                }
+//                music.stop();
+//
+//                if (isMusicPlayed) {
+//                    playMusic(R.raw.music, stopPosition);
+//                }
 
                 percent = random.nextInt(100) + 1;
 
@@ -233,6 +237,13 @@ public class MainActivity extends AppCompatActivity {
 
         rbTai = findViewById(R.id.rbTai);
         rbXiu = findViewById(R.id.rbXiu);
+    }
+
+    private void initMusic() {
+        music = MediaPlayer.create(this, R.raw.music);
+        music.setLooping(true);
+
+        sound = MediaPlayer.create(this, R.raw.play_sound);
     }
 
     private void playMusic(int id, int current) {
