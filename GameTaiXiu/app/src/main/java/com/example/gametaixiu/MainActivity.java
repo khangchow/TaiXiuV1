@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
                     btnMusic.setImageResource(R.drawable.ic_music_off);
 
-                    music.stop();
+                    music.pause();
                 }else {
                     isMusicPlayed = true;
 
